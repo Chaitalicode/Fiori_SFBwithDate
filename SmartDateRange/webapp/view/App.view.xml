@@ -1,0 +1,56 @@
+<mvc:View xmlns:core2="sap.ui.core" controllerName="sd.SmartDateRange.controller.App"  xmlns:m="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" >
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+        <smartFilterBar:SmartFilterBar useToolbar="false" id="IDsmartFilterBar" entitySet="TabSet"   enableBasicSearch="true" useDateRangeType="true">
+         <smartFilterBar:controlConfiguration>
+           <!-- <smartFilterBar:ControlConfiguration id="idControlConfig"  key="Empid" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false">
+            </smartFilterBar:ControlConfiguration> -->
+          
+                <smartFilterBar:ControlConfiguration id="idControlConfigDate"  key="Doj" controlType="date" visibleInAdvancedArea="true"  preventInitialDataFetchInValueHelpDialog="false">
+                <!-- <smartFilterBar:customControl>                   
+                    <core:CustomData key="dateFormatSettings" value='\{"UTC":true\}' />
+                </smartFilterBar:customControl> -->
+                <smartFilterBar:customData>
+                     <core2:CustomData key="dateFormatSettings" value='\{"UTC":true\}' ></core2:CustomData>
+               </smartFilterBar:customData>
+                </smartFilterBar:ControlConfiguration>
+
+               <smartFilterBar:ControlConfiguration key="Empid" visibleInAdvancedArea="true">
+                <smartFilterBar:customControl >
+            	<m:Select id="idEmpy" change="onCustomFilter">
+					<core:Item key="0" text="10111"/>	
+                    <core:Item key="1" text="10222"/>										
+				</m:Select>
+                </smartFilterBar:customControl>
+               </smartFilterBar:ControlConfiguration>
+    
+		</smartFilterBar:controlConfiguration>
+
+        <smartFilterBar:layoutData>
+					<FlexItemData shrinkFactor="0"/>
+				</smartFilterBar:layoutData>
+
+      </smartFilterBar:SmartFilterBar>
+                     <smartTable:SmartTable 
+        smartFilterId="IDsmartFilterBar"
+		id="smartTable_ResponsiveTable"		
+		tableType="Table" 
+		editable="false"
+		entitySet="TabSet" 
+        initiallyVisibleFields="Empid,Empname,Designation,Doj"
+		useVariantManagement="true"
+		useTablePersonalisation="true"	
+		showRowCount="true"
+		useExportToExcel="false" 
+        beforeRebindTable="onBeforeRebind"
+		enableAutoBinding="true">
+	</smartTable:SmartTable>
+                    </content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
